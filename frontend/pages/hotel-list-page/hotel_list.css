@@ -4,7 +4,10 @@ body {
     background-color: #fff2e5;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
     overflow-x: hidden;
+=======
+>>>>>>> f7d7c27 (Initial commit)
 }
 
 .container {
