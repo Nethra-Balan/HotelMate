@@ -3,12 +3,12 @@ async function searchHotelByCity(){
     if(!city){
         return;
     }
-    const response = await fetch(`http://localhost:3000/api/hotels/${city}`, {
+    const response = await fetch(`http://localhost:3000/api/hotels/city/${city}`, {
         method: "GET"
     });
     if(!response.ok){
         const hotelList = document.getElementById("hotel-list");
-        hotelList.innerHTML =`<p><i class="bi bi-search"></i>  Oops! City Not Found...</p?`;
+        hotelList.innerHTML =`<p><i class="bi bi-search"></i>  Oops! City Not Found...</p>`;
         hotelList.classList.add("error-message");
         return;
     }
@@ -24,21 +24,21 @@ async function searchHotelByCity(){
             let starsHTML = "";
 
             for (let i = 0; i < fullStars; i++) {
-                starsHTML += `<i class="bi bi-star-fill"></i>`; // Full Star
+                starsHTML += `<i class="bi bi-star-fill"></i>`; 
             }
             if (halfStar) {
-                starsHTML += `<i class="bi bi-star-half"></i>`; // Half Star
+                starsHTML += `<i class="bi bi-star-half"></i>`; 
             }
             for (let i = 0; i < emptyStars; i++) {
-                starsHTML += `<i class="bi bi-star"></i>`; // Empty Star
+                starsHTML += `<i class="bi bi-star"></i>`;
             }
 
             hotelCard.innerHTML = `
-                <img src="${hotel.thumbnail || 'default.jpg'}" alt="${hotel.name}">
+                <img src="${hotel.thumbnail}" alt="${hotel.name}">
                 <div class="hotel-info">
                     <h3>${hotel.name}</h3>
                     <p><strong>Rank:</strong> ${hotel.ranking}</p>
-                    <p><strong>Price:</strong> $${hotel.priceMin} - $${hotel.priceMax}</p>
+                    <p><strong>Price:</strong> ₹${hotel.priceMin} - ₹${hotel.priceMax}</p>
                 </div>
                 <div class="hotel-actions">
                     <p class="rating">${starsHTML} (${hotel.rating})</p>
@@ -48,4 +48,10 @@ async function searchHotelByCity(){
             `;
         container.appendChild(hotelCard);
     });
+}
+
+function viewHotel(hotelId) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const email=urlParams.get('email');
+    window.location.href = `../hotel-details-page/hotel-details.html?id=${hotelId}&email=${email}`;
 }
