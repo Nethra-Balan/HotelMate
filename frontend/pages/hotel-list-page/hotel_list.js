@@ -3,12 +3,28 @@ async function searchHotelByCity(){
     if(!city){
         return;
     }
+<<<<<<< HEAD
     const response = await fetch(`http://localhost:3000/api/hotels/city/${city}`, {
+=======
+<<<<<<< HEAD
+    const response = await fetch(`http://localhost:3000/api/hotels/city/${city}`, {
+=======
+    const response = await fetch(`http://localhost:3000/api/hotels/${city}`, {
+>>>>>>> f7d7c27 (Initial commit)
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a
         method: "GET"
     });
     if(!response.ok){
         const hotelList = document.getElementById("hotel-list");
+<<<<<<< HEAD
         hotelList.innerHTML =`<p><i class="bi bi-search"></i>  Oops! City Not Found...</p>`;
+=======
+<<<<<<< HEAD
+        hotelList.innerHTML =`<p><i class="bi bi-search"></i>  Oops! City Not Found...</p>`;
+=======
+        hotelList.innerHTML =`<p><i class="bi bi-search"></i>  Oops! City Not Found...</p?`;
+>>>>>>> f7d7c27 (Initial commit)
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a
         hotelList.classList.add("error-message");
         return;
     }
@@ -24,6 +40,10 @@ async function searchHotelByCity(){
             let starsHTML = "";
 
             for (let i = 0; i < fullStars; i++) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a
                 starsHTML += `<i class="bi bi-star-fill"></i>`; 
             }
             if (halfStar) {
@@ -39,6 +59,26 @@ async function searchHotelByCity(){
                     <h3>${hotel.name}</h3>
                     <p><strong>Rank:</strong> ${hotel.ranking}</p>
                     <p><strong>Price:</strong> ₹${hotel.priceMin} - ₹${hotel.priceMax}</p>
+<<<<<<< HEAD
+=======
+=======
+                starsHTML += `<i class="bi bi-star-fill"></i>`; // Full Star
+            }
+            if (halfStar) {
+                starsHTML += `<i class="bi bi-star-half"></i>`; // Half Star
+            }
+            for (let i = 0; i < emptyStars; i++) {
+                starsHTML += `<i class="bi bi-star"></i>`; // Empty Star
+            }
+
+            hotelCard.innerHTML = `
+                <img src="${hotel.thumbnail || 'default.jpg'}" alt="${hotel.name}">
+                <div class="hotel-info">
+                    <h3>${hotel.name}</h3>
+                    <p><strong>Rank:</strong> ${hotel.ranking}</p>
+                    <p><strong>Price:</strong> $${hotel.priceMin} - $${hotel.priceMax}</p>
+>>>>>>> f7d7c27 (Initial commit)
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a
                 </div>
                 <div class="hotel-actions">
                     <p class="rating">${starsHTML} (${hotel.rating})</p>
@@ -48,6 +88,10 @@ async function searchHotelByCity(){
             `;
         container.appendChild(hotelCard);
     });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a
 }
 
 function viewHotel(hotelId) {
@@ -55,3 +99,9 @@ function viewHotel(hotelId) {
     const email=urlParams.get('email');
     window.location.href = `../hotel-details-page/hotel-details.html?id=${hotelId}&email=${email}`;
 }
+<<<<<<< HEAD
+=======
+=======
+}
+>>>>>>> f7d7c27 (Initial commit)
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a

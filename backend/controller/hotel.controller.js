@@ -32,6 +32,10 @@ const getHotelByCity=async (req,res)=>{
     }
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a
 const getHotelById=async (req,res)=>{
     try{
         const id=req.params.id;
@@ -93,6 +97,11 @@ const getHotelAmenitiesById = async (req, res) => {
 };
 
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f7d7c27 (Initial commit)
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a
 const postHotel=async (req,res)=>{
     try{
         const {
@@ -126,6 +135,10 @@ const postHotel=async (req,res)=>{
     }
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a
 const updateHotel = async (req, res) => {
     try {
         const hotelId = req.params.id;
@@ -177,11 +190,73 @@ const updateHotel = async (req, res) => {
 
         res.status(200).json({ message: 'Hotel Updated Successfully!' });
     } catch (error) {
+<<<<<<< HEAD
+=======
+=======
+const updateHotel=async (req,res)=>{
+    try{
+        const hotelId=req.params.id;
+        if(!hotelId){
+            res.status(404).json({ message: 'Provide ID' });
+        }
+        const {
+            name, fullAddress, city, state, country, postalCode, latitude, longitude,
+            priceMin, priceMax, rating, reviewsCount, ranking, totalHotels, contactEmail,
+            contactPhone, contactWebsite, thumbnail, link
+        } = req.body;
+        if (
+            !name && !fullAddress && !city && !state && !country && !postalCode &&
+            latitude === undefined && longitude === undefined && priceMin === undefined &&
+            priceMax === undefined && rating === undefined && reviewsCount === undefined &&
+            ranking === undefined && totalHotels === undefined && !contactEmail &&
+            !contactPhone && !contactWebsite && !thumbnail && !link
+        ) {
+            return res.status(400).json({ error: "At least one field is required for update" });
+        }
+        let updateFields = [];
+        let values = [];
+        if (name) { updateFields.push("name = ?"); values.push(name); }
+        if (fullAddress) { updateFields.push("fullAddress = ?"); values.push(fullAddress); }
+        if (city) { updateFields.push("city = ?"); values.push(city); }
+        if (state) { updateFields.push("state = ?"); values.push(state); }
+        if (country) { updateFields.push("country = ?"); values.push(country); }
+        if (postalCode) { updateFields.push("postalCode = ?"); values.push(postalCode); }
+        if (latitude !== undefined) { updateFields.push("latitude = ?"); values.push(latitude); }
+        if (longitude !== undefined) { updateFields.push("longitude = ?"); values.push(longitude); }
+        if (priceMin !== undefined) { updateFields.push("priceMin = ?"); values.push(priceMin); }
+        if (priceMax !== undefined) { updateFields.push("priceMax = ?"); values.push(priceMax); }
+        if (rating !== undefined) { updateFields.push("rating = ?"); values.push(rating); }
+        if (reviewsCount !== undefined) { updateFields.push("reviewsCount = ?"); values.push(reviewsCount); }
+        if (ranking !== undefined) { updateFields.push("ranking = ?"); values.push(ranking); }
+        if (totalHotels !== undefined) { updateFields.push("totalHotels = ?"); values.push(totalHotels); }
+        if (contactEmail) { updateFields.push("contactEmail = ?"); values.push(contactEmail); }
+        if (contactPhone) { updateFields.push("contactPhone = ?"); values.push(contactPhone); }
+        if (contactWebsite) { updateFields.push("contactWebsite = ?"); values.push(contactWebsite); }
+        if (thumbnail) { updateFields.push("thumbnail = ?"); values.push(thumbnail); }
+        if (link) { updateFields.push("link = ?"); values.push(link); }
+        values.push(hotelId);
+        const query = `UPDATE Hotels SET ${updateFields.join(", ")} WHERE id = ?`;
+        const [result] = await db.query(query, values);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: "Hotel not found" });
+        }
+        res.status(200).json({ message: 'Hotel Updated Successfully!' });
+    }
+    catch(error){
+>>>>>>> f7d7c27 (Initial commit)
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a
         console.log(error);
         res.status(500).send(error);
     }
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> f7d7c27 (Initial commit)
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a
 const deleteHotel=async (req,res)=>{
     try{
         const id=req.params.id;
@@ -197,6 +272,10 @@ const deleteHotel=async (req,res)=>{
     }
 };
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a
 const postAdmin = async (req, res) => {
     try {
         const {hotel_id, password} = req.body;
@@ -255,3 +334,9 @@ const loginAdmin = async (req, res) => {
 };
 
 module.exports={getHotels,getHotelByCity,getHotelById,postHotel,updateHotel,deleteHotel,getHotelPhotosById,getHotelAmenitiesById,postAdmin,loginAdmin};
+<<<<<<< HEAD
+=======
+=======
+module.exports={getHotels,getHotelByCity,postHotel,updateHotel,deleteHotel};
+>>>>>>> f7d7c27 (Initial commit)
+>>>>>>> 64275afc7366596754f3a4565678ebed6e57677a
